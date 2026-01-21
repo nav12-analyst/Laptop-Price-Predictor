@@ -1,6 +1,7 @@
 import streamlit as st
 import pickle
 import numpy as np
+import pandas as pd
 
 # import the model
 pipe = pickle.load(open('pipe.pkl','rb'))
@@ -65,10 +66,12 @@ if st.button('Predict Price'):
     query = pd.DataFrame([[brand, laptop_type, ram, weight, touchscreen, ips, ppi, cpu, hdd, ssd, gpu, os]],
                      columns=['Company', 'TypeName', 'Ram', 'Weight', 'Touchscreen', 'Ips', 'ppi', 'Cpu brand', 'HDD', 'SSD', 'Gpu brand', 'os'])
 
-    # Then predict
+    #Then predict
     #prediction = pipe.predict(query)
+    
 
-    query = query.reshape(1,12)
+    #query = query.reshape(1,12)
     st.title("The predicted price of this configuration is " + str(int(np.exp(pipe.predict(query)[0]))))
+
 
 
