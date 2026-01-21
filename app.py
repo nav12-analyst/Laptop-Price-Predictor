@@ -63,15 +63,17 @@ if st.button('Predict Price'):
     query = np.array([company,type,ram,weight,touchscreen,ips,ppi,cpu,hdd,ssd,gpu,os])
 
     # Create a dataframe with the exact same column names as your training data
-    query = pd.DataFrame([[brand, laptop_type, ram, weight, touchscreen, ips, ppi, cpu, hdd, ssd, gpu, os]],
-                     columns=['Company', 'TypeName', 'Ram', 'Weight', 'Touchscreen', 'Ips', 'ppi', 'Cpu brand', 'HDD', 'SSD', 'Gpu brand', 'os'])
-
+    query = pd.DataFrame([[company, type, ram, weight, ts, ips_val, ppi, cpu, hdd, ssd, gpu, os]],
+                         columns=['Company', 'TypeName', 'Ram', 'Weight', 
+                                  'Touchscreen', 'Ips', 'ppi', 'Cpu brand', 
+                                  'HDD', 'SSD', 'Gpu brand', 'os'])
     #Then predict
     #prediction = pipe.predict(query)
     
 
     #query = query.reshape(1,12)
     st.title("The predicted price of this configuration is " + str(int(np.exp(pipe.predict(query)[0]))))
+
 
 
 
